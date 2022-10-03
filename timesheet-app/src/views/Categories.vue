@@ -1,29 +1,28 @@
 <template>
-    <div>
-        <h1>Categories</h1>
-        <div v-for=" category in categories" v-bind:key="category.id">
-            <h2>{{ category.categoryname }}</h2>
-    </div>
-    </div>
+    <h1 class="display-6">Categories</h1>
+    <CategoryHeader :isCreated="isCreated" :setCreated="setCreated" :setTerm="setTerm" :searchTerm="searchTerm" />
+    <CategoryList :isCreated="isCreated" :setCreated="setCreated" :searchTerm="searchTerm" />
 </template>
 
 <script>
-export default{
-    data(){
+import CategoryList from "../components/Categories/CategoryList.vue";
+import CategoryHeader from "../components/Categories/CategoryHeader.vue";
+export default {
+    components: { CategoryList, CategoryHeader },
+    data() {
         return {
-            categories:[]
+            isCreated: false,
+            searchTerm: ''
         }
     },
-    methods:{
-        async  getData(){
-           let response =  fetch("http://127.0.0.1:8000/api/Categories/")
-           this.categories = (await response).json();
+    methods: {
+        setCreated(c) {
+            this.isCreated = c;
+        },
+        setTerm(c) {
+            this.searchTerm = c;
         }
     },
-    mounted(){
-        this.getData();
-        console.log(this.categories);
-    }
 }
 </script>
 
