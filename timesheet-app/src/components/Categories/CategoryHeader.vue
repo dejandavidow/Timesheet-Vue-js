@@ -13,7 +13,7 @@
                         <n-input v-model:value="categoryname" />
                     </n-form-item>
                     <n-form-item>
-                        <n-button type="warning" @click="postCategory({categoryname})">
+                        <n-button type="warning" @click="postCategory">
                             Create
                         </n-button>
                     </n-form-item>
@@ -32,16 +32,16 @@ export default {
         }
     },
     methods: {
-        async postCategory(body) {
-            await fetch('http://127.0.0.1:8000/api/Categories/', { method: "POST", headers: { 'Content-type': 'application/json' }, body: JSON.stringify(body) })
+        async postCategory() {
+            await fetch('http://127.0.0.1:8000/api/Categories/', { method: "POST", headers: { 'Content-type': 'application/json' }, body: JSON.stringify({categoryname:this.categoryname}) })
                 .then(x => {
                     this.showModal = false;
                     this.setCreated(true);
                 })
-            setTimeout(() => {
-                this.setCreated(false);
-            }, 2000);
-            this.categoryname = null;
+                setTimeout(() => {
+                    this.setCreated(false);
+                }, 2000);
+                this.categoryname = null;
         },
     },
     props: {

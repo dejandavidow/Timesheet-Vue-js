@@ -1,41 +1,41 @@
 <template>
-<h1>Clients</h1>
-<p>
-  Ask a yes/no question:
-  <input v-model="question" />
-</p>
-<p>{{ answer }}</p>
+  <div>
+    <h1 class="display-6">Clients</h1>
+    <ClientsHeader
+      :clientsChanged="clientsChanged"
+      :setChanged="setChanged"
+      :searchTerm="searchTerm"
+      :setTerm="setTerm"
+    />
+    <ClientsList
+      :clientsChanged="clientsChanged"
+      :setChanged="setChanged"
+      :searchTerm="searchTerm"
+      :setTerm="setTerm"
+    />
+  </div>
 </template>
+
 <script>
-    export default {
-        data() {
+import ClientsHeader from "../components/Clients/ClientsHeader.vue";
+import ClientsList from "../components/Clients/ClientsList.vue";
+export default {
+  components: { ClientsHeader, ClientsList },
+  data() {
     return {
-      question: '',
-      answer: 'Questions usually contain a question mark. ;-)'
-    }
-  },
-  watch: {
-    // whenever question changes, this function will run
-    question(newQuestion, oldQuestion) {
-      if (newQuestion.includes('?')) {
-        this.getAnswer()
-      }
-    }
+      clientsChanged: false,
+      searchTerm: "",
+    };
   },
   methods: {
-    async getAnswer() {
-      this.answer = 'Thinking...'
-      try {
-        const res = await fetch('https://yesno.wtf/api')
-        this.answer = (await res.json()).answer
-      } catch (error) {
-        this.answer = 'Error! Could not reach the API. ' + error
-      }
-    }
-  }
-    }
+    setChanged(c) {
+      this.clientsChanged = c;
+    },
+    setTerm(c) {
+      this.searchTerm = c;
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style scoped></style>
