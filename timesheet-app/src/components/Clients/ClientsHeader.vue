@@ -24,7 +24,7 @@
               <n-input v-model:value="postalcode" />
             </n-form-item>
             <n-form-item label="Country">
-              <n-input v-model:value="country" />
+             <n-select v-model:value="country" :options="options" />
             </n-form-item>
             <n-form-item>
               <n-button type="primary" @click="postClient">
@@ -48,7 +48,29 @@
                     adress:'',
                     city:'',
                     postalcode:'',
-                    country:''
+                    country:'',
+                    options:[
+                        {
+                        label:'Serbia',
+                        value:'Serbia'
+                    },
+                    {
+                        label:'Bosnia',
+                        value:'Bosnia'
+                    },
+                    {
+                        label:'Bulgaria',
+                        value:'Bulgaria'
+                    },
+                    {
+                        label:'Macedonia',
+                        value:'Macedonia'
+                    },
+                    {
+                        label:'Montenegro',
+                        value:'Montenegro'
+                    }
+                ]
             }
         },
         methods: {

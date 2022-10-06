@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="display-6">Categories</h1>
+        <h1 class="display-6">Timesheets</h1>
 <TimesheetCalendar/>
     </div>
 </template>

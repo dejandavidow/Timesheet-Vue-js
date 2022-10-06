@@ -1,4 +1,5 @@
 <template>
+    <h1 class="display-6">Categories</h1>
     <CategoryHeader :isCreated="isCreated" :setCreated="setCreated" :setTerm="setTerm" :searchTerm="searchTerm" />
     <CategoryList :isCreated="isCreated" :setCreated="setCreated" :searchTerm="searchTerm" />
 </template>
